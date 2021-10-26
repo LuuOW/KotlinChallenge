@@ -14,8 +14,9 @@ data class ParkingSpace(var vehicle: Vehicle, val checkInTime: Calendar = Calend
 
         val allPlates = parking.vehicles.filter { inputPlate == it.plate }
         if (allPlates.size == 1) {
-            println("anda joya")
-            onSuccess(25)
+            val hasDiscount: Boolean = allPlates[0].discountCard?.isNullOrBlank() == true
+            val amount = calculateFee(allPlates[0].type, parkedTime.toInt(), allPlates[0].discountCard )
+            onSuccess(amount)
         }
     }
 
@@ -33,6 +34,7 @@ data class ParkingSpace(var vehicle: Vehicle, val checkInTime: Calendar = Calend
             true -> ceil((amount * 0.85)).toInt()
             else -> amount.toInt()
         }
+
     }
 
 
