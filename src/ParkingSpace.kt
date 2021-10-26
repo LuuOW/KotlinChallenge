@@ -1,4 +1,6 @@
 import java.util.*
+import kotlin.math.abs
+import kotlin.math.ceil
 
 private val MINUTES_IN_MILLISECONDS = 60000
 
@@ -27,6 +29,10 @@ data class ParkingSpace(var vehicle: Vehicle, val checkInTime: Calendar = Calend
 
     fun calculateFee(type: VehicleType, parkedTime: Int, hasDiscountCard: Boolean) : Int {
         val amount = type.fare + abs(ceil((parkedTime - 120).toDouble()/15)*5)
+        amount = return when(hasDiscountCard) {
+            true -> ceil((amount * 0.85)).toInt()
+            else -> amount.toInt()
+        }
     }
 
 
