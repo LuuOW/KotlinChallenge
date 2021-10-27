@@ -4,24 +4,24 @@ import kotlin.math.ceil
 
 private val MINUTES_IN_MILLISECONDS = 60000
 
-data class ParkingSpace(var vehicle: Vehicle, val checkInTime: Calendar = Calendar.getInstance()) {
+data class ParkingSpace() {
 
     lateinit var parking: Parking
 
-    val parkedTime: Long get() = (Calendar.getInstance().timeInMillis - checkInTime.timeInMillis) / MINUTES_IN_MILLISECONDS
 
     fun checkOutVehicle(inputPlate: String, onSuccess: (Int) -> Int, onError: () -> Unit){
 
-        val allPlates = parking.vehicles.filter { inputPlate == it.plate }
-        if (allPlates.size == 1) {
-            val hasDiscount: Boolean = allPlates[0].discountCard?.isNullOrBlank() == true
-            val amount = calculateFee(allPlates[0].type, parkedTime.toInt(), allPlates[0].discountCard )
+        val vehicleMatch = parking.vehicles.filter { inputPlate == it.plate }
+        if (vehicleMatch.size == 1) {
+            val hasDiscount: Boolean = !vehicleMatch[0].discountCard.isNullOrBlank()
+            val parkedTime = (Calendar.getInstance().timeInMillis - vehicleMatch[0].checkInTime.timeInMillis) / MINUTES_IN_MILLISECONDS
+            val amount = calculateFee(vehicleMatch[0].type, parkedTime.toInt(), hasDiscount)
             onSuccess(amount)
         }
     }
 
     fun onSuccess(amount: Int){
-
+        println("Your fee is $amount. Come back soon.")
     }
 
     fun onError() {

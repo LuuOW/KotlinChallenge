@@ -31,10 +31,11 @@ fun main() {
     val vehicles = mutableListOf<Vehicle>(vehicle1, vehicle2, vehicle3, vehicle4, vehicle5, vehicle6, vehicle7, vehicle8, vehicle9, vehicle10, vehicle11, vehicle12, vehicle13, vehicle14, vehicle15, vehicle16, vehicle17, vehicle18, vehicle19
         , vehicle20, vehicle21, vehicle22, vehicle23)
 
-
     for( i in vehicles.indices){
         parking.addVehicle(vehicles[i])
     }
+
+
 
 
 
