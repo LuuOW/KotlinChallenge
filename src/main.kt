@@ -28,19 +28,25 @@ fun main() {
 
 
     val parking = Parking(mutableSetOf())
+
+    val parkingSpace: ParkingSpace = ParkingSpace()
+    parkingSpace.parking = parking
+
     val vehicles = mutableListOf<Vehicle>(vehicle1, vehicle2, vehicle3, vehicle4, vehicle5, vehicle6, vehicle7, vehicle8, vehicle9, vehicle10, vehicle11, vehicle12, vehicle13, vehicle14, vehicle15, vehicle16, vehicle17, vehicle18, vehicle19
-        , vehicle20, vehicle21, vehicle22, vehicle23)
+        , vehicle20, vehicle21)
 
     for( i in vehicles.indices){
         parking.addVehicle(vehicles[i])
     }
 
+    //parking.addVehicle(vehicle22)
+    //parking.addVehicle(vehicle1)
 
+    //parkingSpace.checkOutVehicle("AAA321", ::onSuccess, ::onError)
 
+    //parkingSpace.checkOutVehicle("ooo")
 
-
-
-    //val parking = Parking(mutableSetOf(car, moto, minibus, bus, car2, car3, car4))
+    //parking.listVehicles()
 
     /*
     println(parking.vehicles.contains(car2))
@@ -54,4 +60,12 @@ fun main() {
     println(car2IsRemoved)
      */
 
+}
+
+fun onSuccess(amount: Int){
+    println("Your fee is $amount. Come back soon.")
+}
+
+fun onError() {
+    println("Sorry, the check-out failed")
 }
