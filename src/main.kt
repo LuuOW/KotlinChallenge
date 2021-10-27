@@ -63,7 +63,7 @@ fun main() {
 }
 
 fun onSuccess(amount: Int){
-    println("Your fee is $amount. Come back soon.")
+    println("Your fee is \$ $amount. Come back soon.")
 }
 
 fun onError() {

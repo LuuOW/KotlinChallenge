@@ -4,7 +4,7 @@ import kotlin.math.ceil
 
 private val MINUTES_IN_MILLISECONDS = 60000
 
-data class ParkingSpace(val In: Calendar = Calendar.getInstance()) {
+ class ParkingSpace() {
 
     lateinit var parking: Parking
 
